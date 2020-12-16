@@ -18,7 +18,7 @@ import io.prestosql.spi.security.SystemAccessControlFactory;
 
 import java.util.ArrayList;
 
-public class OpenlookengRangerPlugin
+public class OpenLooKengRangerPlugin
         implements Plugin
 {
     @Override

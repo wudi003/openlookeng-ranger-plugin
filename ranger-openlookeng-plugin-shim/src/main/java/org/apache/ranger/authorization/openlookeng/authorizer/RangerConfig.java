@@ -50,7 +50,7 @@ public class RangerConfig {
   public boolean isUseUgi() { return useUgi; }
 
   @Config("ranger.use_ugi")
-  @ConfigDescription("Use Hadoop User Group Information instead of Openlookeng groups")
+  @ConfigDescription("Use Hadoop User Group Information instead of openLooKeng groups")
   @SuppressWarnings("unused")
   public RangerConfig setUseUgi(boolean useUgi) {
     this.useUgi = useUgi;

@@ -19,8 +19,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ranger-openlookeng-plugin</artifactId>
-    <name>OpenLooKeng Security Plugin</name>
-    <description>OpenLooKeng Security Plugin</description>
+    <name>openLooKeng Security Plugin</name>
+    <description>openLooKeng Security Plugin</description>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

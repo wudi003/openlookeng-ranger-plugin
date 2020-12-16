@@ -120,7 +120,7 @@ public class RangerSystemAccessControl
     }
     Set<String> filteredCatalogs = new HashSet<>(catalogs.size());
     for (String catalog: catalogs) {
-      if (hasPermission(createResource(catalog), identity, OpenlooKengAccessType.SELECT)) {
+      if (hasPermission(createResource(catalog), identity, OpenLooKengAccessType.SELECT)) {
         filteredCatalogs.add(catalog);
       }
     }
@@ -134,7 +134,7 @@ public class RangerSystemAccessControl
     }
     Set<String> filteredSchemaNames = new HashSet<>(schemaNames.size());
     for (String schemaName: schemaNames) {
-      if (hasPermission(createResource(catalogName, schemaName), identity, OpenlooKengAccessType.SELECT)) {
+      if (hasPermission(createResource(catalogName, schemaName), identity, OpenLooKengAccessType.SELECT)) {
         filteredSchemaNames.add(schemaName);
       }
     }
@@ -149,7 +149,7 @@ public class RangerSystemAccessControl
     Set<SchemaTableName> filteredTableNames = new HashSet<>(tableNames.size());
     for (SchemaTableName tableName : tableNames) {
       RangerOpenLooKengResource res = createResource(catalogName, tableName.getSchemaName(), tableName.getTableName());
-      if (hasPermission(res, identity, OpenlooKengAccessType.SELECT)) {
+      if (hasPermission(res, identity, OpenLooKengAccessType.SELECT)) {
         filteredTableNames.add(tableName);
       }
     }
@@ -164,7 +164,7 @@ public class RangerSystemAccessControl
     List<ColumnMetadata> filteredColumnNames = new ArrayList<>(columns.size());
     for (ColumnMetadata columnMetadata : columns) {
       RangerOpenLooKengResource res = createResource(table, Optional.of(columnMetadata.getName()));
-      if (hasPermission(res, identity, OpenlooKengAccessType.SELECT)) {
+      if (hasPermission(res, identity, OpenLooKengAccessType.SELECT)) {
         filteredColumnNames.add(columnMetadata);
       }
     }
@@ -184,7 +184,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanSetSystemSessionProperty(Identity identity, String propertyName) {
-    if (!hasPermission(createSystemPropertyResource(propertyName), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createSystemPropertyResource(propertyName), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanSetSystemSessionProperty denied");
       AccessDeniedException.denySetSystemSessionProperty(propertyName);
     }
@@ -194,7 +194,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanSetCatalogSessionProperty(Identity identity, String catalogName, String propertyName) {
-    if (!hasPermission(createCatalogSessionResource(catalogName, propertyName), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createCatalogSessionResource(catalogName, propertyName), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanSetSystemSessionProperty(" + catalogName + ") denied");
       AccessDeniedException.denySetCatalogSessionProperty(catalogName, propertyName);
     }
@@ -209,7 +209,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanAccessCatalog(Identity identity, String catalogName) {
-    if (!hasPermission(createResource(catalogName), identity, OpenlooKengAccessType.USE)) {
+    if (!hasPermission(createResource(catalogName), identity, OpenLooKengAccessType.USE)) {
       LOG.debug("RangerSystemAccessControl.checkCanAccessCatalog(" + catalogName + ") denied");
       AccessDeniedException.denyCatalogAccess(catalogName);
     }
@@ -217,7 +217,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanCreateCatalog(Identity identity, String catalogName) {
-    if (!hasPermission(createResource(catalogName), identity, OpenlooKengAccessType.CREATE)) {
+    if (!hasPermission(createResource(catalogName), identity, OpenLooKengAccessType.CREATE)) {
       LOG.debug("RangerSystemAccessControl.checkCanCreateCatalog(" + catalogName + ") denied");
       AccessDeniedException.denyCreateCatalog(catalogName);
     }
@@ -225,7 +225,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanDropCatalog(Identity identity, String catalogName) {
-    if (!hasPermission(createResource(catalogName), identity, OpenlooKengAccessType.DROP)) {
+    if (!hasPermission(createResource(catalogName), identity, OpenLooKengAccessType.DROP)) {
       LOG.debug("RangerSystemAccessControl.checkCanDropCatalog(" + catalogName + ") denied");
       AccessDeniedException.denyDropCatalog(catalogName);
     }
@@ -233,7 +233,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanUpdateCatalog(Identity identity, String catalogName) {
-    if (!hasPermission(createResource(catalogName), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createResource(catalogName), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanUpdateCatalog(" + catalogName + ") denied");
       AccessDeniedException.denyUpdateCatalog(catalogName);
     }
@@ -241,7 +241,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanShowRoles(Identity identity, String catalogName) {
-    if (!hasPermission(createResource(catalogName), identity, OpenlooKengAccessType.SHOW)) {
+    if (!hasPermission(createResource(catalogName), identity, OpenLooKengAccessType.SHOW)) {
       LOG.debug("RangerSystemAccessControl.checkCanShowRoles(" + catalogName + ") denied");
       AccessDeniedException.denyShowRoles(catalogName);
     }
@@ -249,7 +249,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanShowSchemas(Identity identity, String catalogName) {
-    if (!hasPermission(createResource(catalogName), identity, OpenlooKengAccessType.SHOW)) {
+    if (!hasPermission(createResource(catalogName), identity, OpenLooKengAccessType.SHOW)) {
       LOG.debug("RangerSystemAccessControl.checkCanShowSchemas(" + catalogName + ") denied");
       AccessDeniedException.denyShowSchemas(catalogName);
     }
@@ -263,7 +263,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanCreateSchema(Identity identity, CatalogSchemaName schema) {
-    if (!hasPermission(createResource(schema.getCatalogName()), identity, OpenlooKengAccessType.CREATE)) {
+    if (!hasPermission(createResource(schema.getCatalogName()), identity, OpenLooKengAccessType.CREATE)) {
       LOG.debug("RangerSystemAccessControl.checkCanCreateSchema(" + schema.getSchemaName() + ") denied");
       AccessDeniedException.denyCreateSchema(schema.getSchemaName());
     }
@@ -274,7 +274,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanDropSchema(Identity identity, CatalogSchemaName schema) {
-    if (!hasPermission(createResource(schema.getCatalogName(), schema.getSchemaName()), identity, OpenlooKengAccessType.DROP)) {
+    if (!hasPermission(createResource(schema.getCatalogName(), schema.getSchemaName()), identity, OpenLooKengAccessType.DROP)) {
       LOG.debug("RangerSystemAccessControl.checkCanDropSchema(" + schema.getSchemaName() + ") denied");
       AccessDeniedException.denyDropSchema(schema.getSchemaName());
     }
@@ -285,7 +285,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanRenameSchema(Identity identity, CatalogSchemaName schema, String newSchemaName) {
-    if (!hasPermission(createResource(schema.getCatalogName(), schema.getSchemaName()), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createResource(schema.getCatalogName(), schema.getSchemaName()), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanRenameSchema(" + schema.getSchemaName() + ") denied");
       AccessDeniedException.denyRenameSchema(schema.getSchemaName(), newSchemaName);
     }
@@ -298,7 +298,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanShowTablesMetadata(Identity identity, CatalogSchemaName schema) {
-    if (!hasPermission(createResource(schema), identity, OpenlooKengAccessType.SHOW)) {
+    if (!hasPermission(createResource(schema), identity, OpenLooKengAccessType.SHOW)) {
       LOG.debug("RangerSystemAccessControl.checkCanShowTables(" + schema.toString() + ") denied");
       AccessDeniedException.denyShowTablesMetadata(schema.toString());
     }
@@ -309,7 +309,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanCreateTable(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table.getCatalogName(), table.getSchemaTableName().getSchemaName()), identity, OpenlooKengAccessType.CREATE)) {
+    if (!hasPermission(createResource(table.getCatalogName(), table.getSchemaTableName().getSchemaName()), identity, OpenLooKengAccessType.CREATE)) {
       LOG.debug("RangerSystemAccessControl.checkCanCreateTable(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyCreateTable(table.getSchemaTableName().getTableName());
     }
@@ -317,7 +317,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanUpdateTable(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanUpdateTable(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyUpdateTable(table.getSchemaTableName().getTableName());
     }
@@ -328,7 +328,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanDropTable(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.DROP)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.DROP)) {
       LOG.debug("RangerSystemAccessControl.checkCanDropTable(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyDropTable(table.getSchemaTableName().getTableName());
     }
@@ -339,7 +339,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanRenameTable(Identity identity, CatalogSchemaTableName table, CatalogSchemaTableName newTable) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanRenameTable(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyRenameTable(table.getSchemaTableName().getTableName(), newTable.getSchemaTableName().getTableName());
     }
@@ -347,7 +347,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanInsertIntoTable(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.INSERT)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.INSERT)) {
       LOG.debug("RangerSystemAccessControl.checkCanInsertIntoTable(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyInsertTable(table.getSchemaTableName().getTableName());
     }
@@ -355,7 +355,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanDeleteFromTable(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.DELETE)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.DELETE)) {
       LOG.debug("RangerSystemAccessControl.checkCanDeleteFromTable(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyDeleteTable(table.getSchemaTableName().getTableName());
     }
@@ -363,7 +363,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanGrantTablePrivilege(Identity identity, Privilege privilege, CatalogSchemaTableName table, PrestoPrincipal grantee, boolean withGrantOption) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.GRANT)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.GRANT)) {
       LOG.debug("RangerSystemAccessControl.checkCanGrantTablePrivilege(" + table + ") denied");
       AccessDeniedException.denyGrantTablePrivilege(privilege.toString(), table.toString());
     }
@@ -371,7 +371,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanRevokeTablePrivilege(Identity identity, Privilege privilege, CatalogSchemaTableName table, PrestoPrincipal revokee, boolean grantOptionFor) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.REVOKE)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.REVOKE)) {
       LOG.debug("RangerSystemAccessControl.checkCanRevokeTablePrivilege(" + table + ") denied");
       AccessDeniedException.denyRevokeTablePrivilege(privilege.toString(), table.toString());
     }
@@ -379,7 +379,7 @@ public class RangerSystemAccessControl
 
   @Override
   public void checkCanSetTableComment(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanSetTableComment(" + table.toString() + ") denied");
       AccessDeniedException.denyCommentTable(table.toString());
     }
@@ -390,7 +390,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanCreateView(Identity identity, CatalogSchemaTableName view) {
-    if (!hasPermission(createResource(view.getCatalogName(), view.getSchemaTableName().getSchemaName()), identity, OpenlooKengAccessType.CREATE)) {
+    if (!hasPermission(createResource(view.getCatalogName(), view.getSchemaTableName().getSchemaName()), identity, OpenLooKengAccessType.CREATE)) {
       LOG.debug("RangerSystemAccessControl.checkCanCreateView(" + view.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyCreateView(view.getSchemaTableName().getTableName());
     }
@@ -401,7 +401,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanDropView(Identity identity, CatalogSchemaTableName view) {
-    if (!hasPermission(createResource(view), identity, OpenlooKengAccessType.DROP)) {
+    if (!hasPermission(createResource(view), identity, OpenLooKengAccessType.DROP)) {
       LOG.debug("RangerSystemAccessControl.checkCanDropView(" + view.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyCreateView(view.getSchemaTableName().getTableName());
     }
@@ -427,7 +427,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanAddColumn(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanAddColumn(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyAddColumn(table.getSchemaTableName().getTableName());
     }
@@ -438,7 +438,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanDropColumn(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.DROP)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.DROP)) {
       LOG.debug("RangerSystemAccessControl.checkCanDropColumn(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyDropColumn(table.getSchemaTableName().getTableName());
     }
@@ -449,7 +449,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanRenameColumn(Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.ALTER)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.ALTER)) {
       LOG.debug("RangerSystemAccessControl.checkCanRenameColumn(" + table.getSchemaTableName().getTableName() + ") denied");
       AccessDeniedException.denyRenameColumn(table.getSchemaTableName().getTableName());
     }
@@ -460,7 +460,7 @@ public class RangerSystemAccessControl
    */
   @Override
   public void checkCanShowColumnsMetadata (Identity identity, CatalogSchemaTableName table) {
-    if (!hasPermission(createResource(table), identity, OpenlooKengAccessType.SHOW)) {
+    if (!hasPermission(createResource(table), identity, OpenLooKengAccessType.SHOW)) {
       LOG.debug("RangerSystemAccessControl.checkCanShowColumnsMetadata(" + table.toString() + ") denied");
       AccessDeniedException.denyShowColumnsMetadata(table.toString());
     }
@@ -469,7 +469,7 @@ public class RangerSystemAccessControl
   @Override
   public void checkCanSelectFromColumns(Identity identity, CatalogSchemaTableName table, Set<String> columns) {
     for (RangerOpenLooKengResource res : createResource(table, columns)) {
-      if (!hasPermission(res, identity, OpenlooKengAccessType.SELECT)) {
+      if (!hasPermission(res, identity, OpenLooKengAccessType.SELECT)) {
         LOG.debug("RangerSystemAccessControl.checkCanSelectFromColumns(" + table.getSchemaTableName().getTableName() + ") denied");
         AccessDeniedException.denySelectColumns(table.getSchemaTableName().getTableName(), columns);
       }
@@ -485,7 +485,7 @@ public class RangerSystemAccessControl
 
   /** HELPER FUNCTIONS **/
 
-  private RangerOpenlookengAccessRequest createAccessRequest(RangerOpenLooKengResource resource, Identity identity, OpenlooKengAccessType accessType) {
+  private RangerOpenLooKengAccessRequest createAccessRequest(RangerOpenLooKengResource resource, Identity identity, OpenLooKengAccessType accessType) {
     Set<String> userGroups = null;
 
     if (useUgi) {
@@ -498,7 +498,7 @@ public class RangerSystemAccessControl
       }
     }
 
-    RangerOpenlookengAccessRequest request = new RangerOpenlookengAccessRequest(
+    RangerOpenLooKengAccessRequest request = new RangerOpenLooKengAccessRequest(
       resource,
       identity.getUser(),
       userGroups,
@@ -508,10 +508,10 @@ public class RangerSystemAccessControl
     return request;
   }
 
-  private boolean hasPermission(RangerOpenLooKengResource resource, Identity identity, OpenlooKengAccessType accessType) {
+  private boolean hasPermission(RangerOpenLooKengResource resource, Identity identity, OpenLooKengAccessType accessType) {
     boolean ret = false;
 
-    RangerOpenlookengAccessRequest request = createAccessRequest(resource, identity, accessType);
+    RangerOpenLooKengAccessRequest request = createAccessRequest(resource, identity, accessType);
 
     RangerAccessResult result = rangerPlugin.isAccessAllowed(request);
     if (result != null && result.getIsAllowed()) {
@@ -650,18 +650,18 @@ class RangerOpenLooKengResource
   }
 }
 
-class RangerOpenlookengAccessRequest
+class RangerOpenLooKengAccessRequest
         extends RangerAccessRequestImpl {
-  public RangerOpenlookengAccessRequest(RangerOpenLooKengResource resource,
+  public RangerOpenLooKengAccessRequest(RangerOpenLooKengResource resource,
                                         String user,
                                         Set<String> userGroups,
-                                        OpenlooKengAccessType openlooKengAccessType) {
-    super(resource, openlooKengAccessType.name().toLowerCase(ENGLISH), user, userGroups, null);
+                                        OpenLooKengAccessType openLooKengAccessType) {
+    super(resource, openLooKengAccessType.name().toLowerCase(ENGLISH), user, userGroups, null);
     setAccessTime(new Date());
   }
 }
 
-enum OpenlooKengAccessType
+enum OpenLooKengAccessType
 {
   CREATE, DROP, SELECT, INSERT, DELETE, USE, ALTER, ALL, GRANT, REVOKE, SHOW;
 }

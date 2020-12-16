@@ -46,7 +46,7 @@
                     <include>javax.inject:javax.inject:jar:${javax-inject.version}</include>
                     <include>org.apache.bval:bval-jsr:jar:${openlookeng.bval-jsr.version}</include>
                     <include>org.slf4j:slf4j-api:jar:${slf4j-api.version}</include>
-                    <include>javax.annotation:javax.annotation-api:jar:${javax.annotation-api}</include>
+                    <include>javax.annotation:javax.annotation-api:jar:${openlookeng.javax.annotation-api}</include>
                 </includes>
             </binaries>
         </moduleSet>

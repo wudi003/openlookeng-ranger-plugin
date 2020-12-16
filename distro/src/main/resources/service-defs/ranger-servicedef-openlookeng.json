@@ -1,10 +1,10 @@
 {
   "id": 18,
   "name": "openlookeng",
-  "displayName": "openlookeng",
-  "implClass": "org.apache.ranger.services.openlookeng.RangerServiceOpenlookeng",
-  "label": "OpenLooKeng",
-  "description": "OpenLooKeng",
+  "displayName": "openLooKeng",
+  "implClass": "org.apache.ranger.services.openlookeng.RangerServiceOpenLooKeng",
+  "label": "openLooKeng",
+  "description": "openLooKeng",
   "guid": "7f37dd70-2cc4-4243-b3f0-f0fad5a13dba",
   "resources": [
     {
@@ -26,8 +26,8 @@
       "validationRegEx": "",
       "validationMessage": "",
       "uiHint": "",
-      "label": "OpenLooKeng Catalog",
-      "description": "OpenLooKeng Catalog"
+      "label": "openLooKeng Catalog",
+      "description": "openLooKeng Catalog"
     },
     {
       "itemId": 2,
@@ -48,8 +48,8 @@
       "validationRegEx": "",
       "validationMessage": "",
       "uiHint": "",
-      "label": "OpenLooKeng Schema",
-      "description": "OpenLooKeng Schema"
+      "label": "openLooKeng Schema",
+      "description": "openLooKeng Schema"
     },
     {
       "itemId": 3,
@@ -70,8 +70,8 @@
       "validationRegEx": "",
       "validationMessage": "",
       "uiHint": "",
-      "label": "OpenLooKeng Table",
-      "description": "OpenLooKeng Table"
+      "label": "openLooKeng Table",
+      "description": "openLooKeng Table"
     },
     {
       "itemId": 4,
@@ -91,8 +91,8 @@
       "validationRegEx": "",
       "validationMessage": "",
       "uiHint": "",
-      "label": "OpenLooKeng Column",
-      "description": "OpenLooKeng Column"
+      "label": "openLooKeng Column",
+      "description": "openLooKeng Column"
     },
     {
       "itemId": 5,
@@ -113,7 +113,7 @@
       "validationMessage": "",
       "uiHint": "",
       "label": "System Property",
-      "description": "OpenLooKeng System Property",
+      "description": "openLooKeng System Property",
       "accessTypeRestrictions": ["alter"]
     },
     {
@@ -135,7 +135,7 @@
       "validationMessage": "",
       "uiHint": "",
       "label": "Catalog Session Property",
-      "description": "OpenLooKeng Catalog Session Property",
+      "description": "openLooKeng Catalog Session Property",
       "accessTypeRestrictions": ["alter"]
     }
   ],

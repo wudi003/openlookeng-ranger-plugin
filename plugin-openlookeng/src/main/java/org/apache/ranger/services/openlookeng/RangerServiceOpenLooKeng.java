@@ -24,15 +24,15 @@ import org.apache.ranger.plugin.client.HadoopConfigHolder;
 import org.apache.ranger.plugin.client.HadoopException;
 import org.apache.ranger.plugin.service.RangerBaseService;
 import org.apache.ranger.plugin.service.ResourceLookupContext;
-import org.apache.ranger.services.openlookeng.client.OpenlookengResourceManager;
+import org.apache.ranger.services.openlookeng.client.OpenLooKengResourceManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RangerServiceOpenlookeng extends RangerBaseService {
-  private static final Log LOG = LogFactory.getLog(RangerServiceOpenlookeng.class);
+public class RangerServiceOpenLooKeng extends RangerBaseService {
+  private static final Log LOG = LogFactory.getLog(RangerServiceOpenLooKeng.class);
 
   @Override
   public Map<String, Object> validateConfig() throws Exception {
@@ -40,7 +40,7 @@ public class RangerServiceOpenlookeng extends RangerBaseService {
     String serviceName = getServiceName();
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("RangerServiceOpenlookeng.validateConfig(): Service: " +
+      LOG.debug("RangerServiceOpenLooKeng.validateConfig(): Service: " +
         serviceName);
     }
 
@@ -49,15 +49,15 @@ public class RangerServiceOpenlookeng extends RangerBaseService {
         if (!configs.containsKey(HadoopConfigHolder.RANGER_LOGIN_PASSWORD)) {
           configs.put(HadoopConfigHolder.RANGER_LOGIN_PASSWORD, null);
         }
-        ret = OpenlookengResourceManager.connectionTest(serviceName, configs);
+        ret = OpenLooKengResourceManager.connectionTest(serviceName, configs);
       } catch (HadoopException he) {
-        LOG.error("<== RangerServiceOpenlookeng.validateConfig Error:" + he);
+        LOG.error("<== RangerServiceOpenLooKeng.validateConfig Error:" + he);
         throw he;
       }
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("RangerServiceOpenlookeng.validateConfig(): Response: " +
+      LOG.debug("RangerServiceOpenLooKeng.validateConfig(): Response: " +
         ret);
     }
     return ret;
@@ -71,21 +71,21 @@ public class RangerServiceOpenlookeng extends RangerBaseService {
     String	serviceType		   = getServiceType();
     Map<String,String> configs = getConfigs();
     if(LOG.isDebugEnabled()) {
-      LOG.debug("==> RangerServiceHive.lookupResource Context: (" + context + ")");
+      LOG.debug("==> RangerServiceOpenLooKeng.lookupResource Context: (" + context + ")");
     }
     if (context != null) {
       try {
         if (!configs.containsKey(HadoopConfigHolder.RANGER_LOGIN_PASSWORD)) {
           configs.put(HadoopConfigHolder.RANGER_LOGIN_PASSWORD, null);
         }
-        ret  = OpenlookengResourceManager.getOpenlookengResources(serviceName, serviceType, configs,context);
+        ret  = OpenLooKengResourceManager.getOpenLooKengResources(serviceName, serviceType, configs,context);
       } catch (Exception e) {
-        LOG.error( "<==RangerServiceOpenlookeng.lookupResource Error : " + e);
+        LOG.error( "<==RangerServiceOpenLooKeng.lookupResource Error : " + e);
         throw e;
       }
     }
     if(LOG.isDebugEnabled()) {
-      LOG.debug("<== RangerServiceOpenlookeng.lookupResource Response: (" + ret + ")");
+      LOG.debug("<== RangerServiceOpenLooKeng.lookupResource Response: (" + ret + ")");
     }
     return ret;
   }

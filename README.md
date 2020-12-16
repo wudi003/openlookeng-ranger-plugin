@@ -56,8 +56,8 @@ curl -u admin:password -X POST -H "Accept: application/json" -H "Content-Type: a
 > # Example: REPOSITORY_NAME=openlookengdev
 > REPOSITORY_NAME=openlookengdev
 >
-> #openLooKeng component installed directory
-> #COMPONENT_INSTALL_DIR_NAME=../openlookeng
+> # openLooKeng component installed directory
+> # COMPONENT_INSTALL_DIR_NAME=../openlookeng
 > COMPONENT_INSTALL_DIR_NAME=/home/hetu-server-1.0.1
 >
 > XAAUDIT.SOLR.ENABLE=false
