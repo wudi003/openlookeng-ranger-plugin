@@ -1,0 +1,740 @@
+{
+  "serviceName": "cl1_openlookeng",
+  "serviceId": 16,
+  "policyUpdateTime": "20201128-10:30:33.000-+0000",
+  "policies": [
+    {
+      "service": "cl1_openlookeng",
+      "name": "alice-schema",
+      "policyType": 0,
+      "policyPriority": 0,
+      "description": "",
+      "isAuditEnabled": true,
+      "resources": {
+        "schema": {
+          "values": [
+            "schema"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        },
+        "catalog": {
+          "values": [
+            "alice-catalog"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        }
+      },
+      "policyItems": [
+        {
+          "accesses": [
+            {
+              "type": "select",
+              "isAllowed": true
+            },
+            {
+              "type": "insert",
+              "isAllowed": true
+            },
+            {
+              "type": "create",
+              "isAllowed": true
+            },
+            {
+              "type": "drop",
+              "isAllowed": true
+            },
+            {
+              "type": "alter",
+              "isAllowed": true
+            },
+            {
+              "type": "show",
+              "isAllowed": true
+            },
+            {
+              "type": "grant",
+              "isAllowed": true
+            }
+          ],
+          "users": [
+            "alice"
+          ],
+          "groups": [],
+          "roles": [],
+          "conditions": [],
+          "delegateAdmin": false
+        }
+      ],
+      "denyPolicyItems": [],
+      "allowExceptions": [],
+      "denyExceptions": [],
+      "dataMaskPolicyItems": [],
+      "rowFilterPolicyItems": [],
+      "serviceType": "openlookeng",
+      "options": {},
+      "validitySchedules": [],
+      "policyLabels": [],
+      "zoneName": "",
+      "isDenyAllElse": false,
+      "id": 52,
+      "guid": "dbf0c060-2bc2-46b2-9b8c-29492e27a0b0",
+      "isEnabled": true,
+      "version": 1
+    },
+    {
+      "service": "cl1_openlookeng",
+      "name": "alice-catalog",
+      "policyType": 0,
+      "policyPriority": 0,
+      "description": "",
+      "isAuditEnabled": true,
+      "resources": {
+        "catalog": {
+          "values": [
+            "alice-catalog"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        }
+      },
+      "policyItems": [
+        {
+          "accesses": [
+            {
+              "type": "select",
+              "isAllowed": true
+            },
+            {
+              "type": "insert",
+              "isAllowed": true
+            },
+            {
+              "type": "create",
+              "isAllowed": true
+            },
+            {
+              "type": "drop",
+              "isAllowed": true
+            },
+            {
+              "type": "use",
+              "isAllowed": true
+            },
+            {
+              "type": "alter",
+              "isAllowed": true
+            },
+            {
+              "type": "show",
+              "isAllowed": true
+            }
+          ],
+          "users": [
+            "alice"
+          ],
+          "groups": [],
+          "roles": [],
+          "conditions": [],
+          "delegateAdmin": false
+        }
+      ],
+      "denyPolicyItems": [],
+      "allowExceptions": [],
+      "denyExceptions": [],
+      "dataMaskPolicyItems": [],
+      "rowFilterPolicyItems": [],
+      "serviceType": "openlookeng",
+      "options": {},
+      "validitySchedules": [],
+      "policyLabels": [],
+      "zoneName": "",
+      "isDenyAllElse": false,
+      "id": 53,
+      "guid": "421fa0d3-db40-456b-aced-f98d62fb4503",
+      "isEnabled": true,
+      "version": 2
+    },
+    {
+      "service": "cl1_openlookeng",
+      "name": "alice-table",
+      "policyType": 0,
+      "policyPriority": 0,
+      "description": "",
+      "isAuditEnabled": true,
+      "resources": {
+        "schema": {
+          "values": [
+            "schema"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        },
+        "catalog": {
+          "values": [
+            "alice-catalog"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        },
+        "table": {
+          "values": [
+            "table",
+            "alice"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        }
+      },
+      "policyItems": [
+        {
+          "accesses": [
+            {
+              "type": "select",
+              "isAllowed": true
+            },
+            {
+              "type": "insert",
+              "isAllowed": true
+            },
+            {
+              "type": "drop",
+              "isAllowed": true
+            },
+            {
+              "type": "delete",
+              "isAllowed": true
+            },
+            {
+              "type": "alter",
+              "isAllowed": true
+            },
+            {
+              "type": "grant",
+              "isAllowed": true
+            },
+            {
+              "type": "revoke",
+              "isAllowed": true
+            }
+          ],
+          "users": [
+            "alice"
+          ],
+          "groups": [],
+          "roles": [],
+          "conditions": [],
+          "delegateAdmin": false
+        }
+      ],
+      "denyPolicyItems": [],
+      "allowExceptions": [],
+      "denyExceptions": [],
+      "dataMaskPolicyItems": [],
+      "rowFilterPolicyItems": [],
+      "serviceType": "openlookeng",
+      "options": {},
+      "validitySchedules": [],
+      "policyLabels": [],
+      "zoneName": "",
+      "isDenyAllElse": false,
+      "id": 55,
+      "guid": "a01266e2-d08f-4567-95b0-b8418a242a12",
+      "isEnabled": true,
+      "version": 2
+    },
+    {
+      "service": "cl1_openlookeng",
+      "name": "alice-procedure",
+      "policyType": 0,
+      "policyPriority": 0,
+      "description": "",
+      "isAuditEnabled": true,
+      "resources": {
+        "schema": {
+          "values": [
+            "schema"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        },
+        "catalog": {
+          "values": [
+            "alice-catalog"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        }
+      },
+      "policyItems": [
+        {
+          "users": [
+            "alice"
+          ],
+          "groups": [],
+          "roles": [],
+          "conditions": [],
+          "delegateAdmin": false
+        }
+      ],
+      "denyPolicyItems": [],
+      "allowExceptions": [],
+      "denyExceptions": [],
+      "dataMaskPolicyItems": [],
+      "rowFilterPolicyItems": [],
+      "serviceType": "openlookeng",
+      "options": {},
+      "validitySchedules": [],
+      "policyLabels": [],
+      "zoneName": "",
+      "isDenyAllElse": false,
+      "id": 55,
+      "guid": "462a399b-847f-444d-91a7-513afdb27d03",
+      "isEnabled": true,
+      "version": 2
+    },
+    {
+      "service": "cl1_openlookeng",
+      "name": "alice-view",
+      "policyType": 0,
+      "policyPriority": 0,
+      "description": "",
+      "isAuditEnabled": true,
+      "resources": {
+        "schema": {
+          "values": [
+            "schema"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        },
+        "catalog": {
+          "values": [
+            "alice-catalog"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        },
+        "table": {
+          "values": [
+            "view"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        }
+      },
+      "policyItems": [
+        {
+          "accesses": [
+            {
+              "type": "select",
+              "isAllowed": true
+            },
+            {
+              "type": "drop",
+              "isAllowed": true
+            }
+          ],
+          "users": [
+            "alice"
+          ],
+          "groups": [],
+          "roles": [],
+          "conditions": [],
+          "delegateAdmin": false
+        }
+      ],
+      "denyPolicyItems": [],
+      "allowExceptions": [],
+      "denyExceptions": [],
+      "dataMaskPolicyItems": [],
+      "rowFilterPolicyItems": [],
+      "serviceType": "openlookeng",
+      "options": {},
+      "validitySchedules": [],
+      "policyLabels": [],
+      "zoneName": "",
+      "isDenyAllElse": false,
+      "id": 56,
+      "guid": "ed65b4cc-70df-4e9b-8893-3751ae95b603",
+      "isEnabled": true,
+      "version": 1
+    },
+    {
+      "service": "cl1_openlookeng",
+      "name": "alice-session-property",
+      "policyType": 0,
+      "policyPriority": 0,
+      "description": "",
+      "isAuditEnabled": true,
+      "resources": {
+        "sessionproperty": {
+          "values": [
+            "property"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        },
+        "catalog": {
+          "values": [
+            "alice-catalog"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        }
+      },
+      "policyItems": [
+        {
+          "accesses": [
+            {
+              "type": "show",
+              "isAllowed": true
+            },
+            {
+              "type": "alter",
+              "isAllowed": true
+            }
+          ],
+          "users": [
+            "alice"
+          ],
+          "groups": [],
+          "roles": [],
+          "conditions": [],
+          "delegateAdmin": false
+        }
+      ],
+      "denyPolicyItems": [],
+      "allowExceptions": [],
+      "denyExceptions": [],
+      "dataMaskPolicyItems": [],
+      "rowFilterPolicyItems": [],
+      "serviceType": "openlookeng",
+      "options": {},
+      "validitySchedules": [],
+      "policyLabels": [],
+      "zoneName": "",
+      "isDenyAllElse": false,
+      "id": 57,
+      "guid": "cbd0375c-f437-47cd-8a10-3da28cf919fc",
+      "isEnabled": true,
+      "version": 1
+    },
+    {
+      "service": "cl1_openlookeng",
+      "name": "open-to-all",
+      "policyType": 0,
+      "policyPriority": 0,
+      "description": "",
+      "isAuditEnabled": true,
+      "resources": {
+        "catalog": {
+          "values": [
+            "open-to-all",
+            "all-allowed"
+          ],
+          "isExcludes": false,
+          "isRecursive": false
+        }
+      },
+      "policyItems": [
+        {
+          "accesses": [
+            {
+              "type": "select",
+              "isAllowed": true
+            }
+          ],
+          "users": [
+            "{USER}"
+          ],
+          "groups": [],
+          "roles": [],
+          "conditions": [],
+          "delegateAdmin": false
+        }
+      ],
+      "denyPolicyItems": [],
+      "allowExceptions": [],
+      "denyExceptions": [],
+      "dataMaskPolicyItems": [],
+      "rowFilterPolicyItems": [],
+      "serviceType": "openlookeng",
+      "options": {},
+      "validitySchedules": [],
+      "policyLabels": [],
+      "zoneName": "",
+      "isDenyAllElse": false,
+      "id": 67,
+      "guid": "0990f3d3-4367-4ca4-a6b2-c3af065cee5d",
+      "isEnabled": true,
+      "version": 1
+    }
+  ],
+  "startIndex": 0,
+  "pageSize": 0,
+  "totalCount": 0,
+  "resultSize": 0,
+  "queryTimeMS": 1606546025105,
+  "serviceDef": {
+    "id": 18,
+    "name": "openlookeng",
+    "displayName": "openlookeng",
+    "implClass": "org.apache.ranger.services.openlookeng.RangerServiceOpenlookeng",
+    "label": "OpenLooKeng",
+    "description": "OpenLooKeng",
+    "guid": "7f37dd70-2cc4-4243-b3f0-f0fad5a13dba",
+    "resources": [
+      {
+        "itemId": 1,
+        "name": "catalog",
+        "type": "string",
+        "level": 10,
+        "parent": "",
+        "mandatory": true,
+        "isValidLeaf": true,
+        "lookupSupported": true,
+        "recursiveSupported": false,
+        "excludesSupported": true,
+        "matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+        "matcherOptions": {
+          "wildCard": true,
+          "ignoreCase": true
+        },
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "label": "OpenLooKeng Catalog",
+        "description": "OpenLooKeng Catalog"
+      },
+      {
+        "itemId": 2,
+        "name": "schema",
+        "type": "string",
+        "level": 20,
+        "parent": "catalog",
+        "mandatory": true,
+        "isValidLeaf": true,
+        "lookupSupported": true,
+        "recursiveSupported": false,
+        "excludesSupported": true,
+        "matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+        "matcherOptions": {
+          "wildCard": true,
+          "ignoreCase": true
+        },
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "label": "OpenLooKeng Schema",
+        "description": "OpenLooKeng Schema"
+      },
+      {
+        "itemId": 3,
+        "name": "table",
+        "type": "string",
+        "level": 30,
+        "parent": "schema",
+        "mandatory": true,
+        "isValidLeaf": true,
+        "lookupSupported": true,
+        "recursiveSupported": false,
+        "excludesSupported": true,
+        "matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+        "matcherOptions": {
+          "wildCard": true,
+          "ignoreCase": true
+        },
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "label": "OpenLooKeng Table",
+        "description": "OpenLooKeng Table"
+      },
+      {
+        "itemId": 4,
+        "name": "column",
+        "type": "string",
+        "level": 40,
+        "parent": "table",
+        "mandatory": true,
+        "lookupSupported": true,
+        "recursiveSupported": false,
+        "excludesSupported": true,
+        "matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+        "matcherOptions": {
+          "wildCard": true,
+          "ignoreCase": true
+        },
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "label": "OpenLooKeng Column",
+        "description": "OpenLooKeng Column"
+      },
+      {
+        "itemId": 5,
+        "name": "systemproperty",
+        "type": "string",
+        "level": 10,
+        "parent": "",
+        "mandatory": true,
+        "lookupSupported": false,
+        "recursiveSupported": false,
+        "excludesSupported": false,
+        "matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+        "matcherOptions": {
+          "wildCard": true,
+          "ignoreCase": true
+        },
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "label": "System Property",
+        "description": "OpenLooKeng System Property",
+        "accessTypeRestrictions": ["alter"]
+      },
+      {
+        "itemId": 6,
+        "name": "sessionproperty",
+        "type": "string",
+        "level": 20,
+        "parent": "catalog",
+        "mandatory": true,
+        "lookupSupported": false,
+        "recursiveSupported": false,
+        "excludesSupported": false,
+        "matcher": "org.apache.ranger.plugin.resourcematcher.RangerDefaultResourceMatcher",
+        "matcherOptions": {
+          "wildCard": true,
+          "ignoreCase": true
+        },
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "label": "Catalog Session Property",
+        "description": "OpenLooKeng Catalog Session Property",
+        "accessTypeRestrictions": ["alter"]
+      }
+    ],
+    "accessTypes": [
+      {
+        "itemId": 1,
+        "name": "select",
+        "label": "Select"
+      },
+      {
+        "itemId": 2,
+        "name": "insert",
+        "label": "Insert"
+      },
+      {
+        "itemId": 3,
+        "name": "create",
+        "label": "Create"
+      },
+      {
+        "itemId": 4,
+        "name": "drop",
+        "label": "Drop"
+      },
+      {
+        "itemId": 5,
+        "name": "delete",
+        "label": "Delete"
+      },
+      {
+        "itemId": 6,
+        "name": "use",
+        "label": "Use"
+      },
+      {
+        "itemId": 7,
+        "name": "alter",
+        "label": "Alter"
+      },
+      {
+        "itemId": 8,
+        "name": "grant",
+        "label": "Grant"
+      },
+      {
+        "itemId": 9,
+        "name": "revoke",
+        "label": "Revoke"
+      },
+      {
+        "itemId": 10,
+        "name": "show",
+        "label": "Show"
+      },
+      {
+        "itemId": 11,
+        "name": "all",
+        "label": "All",
+        "impliedGrants": [
+          "select",
+          "insert",
+          "create",
+          "delete",
+          "drop",
+          "use",
+          "alter",
+          "grant",
+          "revoke",
+          "show"
+        ]
+      }
+    ],
+    "configs": [
+      {
+        "itemId": 1,
+        "name": "username",
+        "type": "string",
+        "mandatory": true,
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "label": "Username"
+      },
+      {
+        "itemId": 2,
+        "name": "password",
+        "type": "password",
+        "mandatory": false,
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "label": "Password"
+      },
+      {
+        "itemId": 3,
+        "name": "jdbc.driverClassName",
+        "type": "string",
+        "mandatory": true,
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": "",
+        "defaultValue": "io.hetu.core.jdbc.OpenLooKengDriver"
+      },
+      {
+        "itemId": 4,
+        "name": "jdbc.url",
+        "type": "string",
+        "mandatory": true,
+        "defaultValue": "",
+        "validationRegEx": "",
+        "validationMessage": "",
+        "uiHint": ""
+      }
+    ],
+    "enums": [
+    ],
+    "contextEnrichers": [
+    ],
+    "policyConditions":
+    [
+    ]
+  }
+}

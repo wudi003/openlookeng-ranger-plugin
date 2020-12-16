@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<assembly>
+    <id>openlookeng-${openlookeng.version}-plugin</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <baseDirectory>ranger-${ranger.version}-openlookeng-${openlookeng.version}-plugin</baseDirectory>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <moduleSets>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.apache.ranger:ranger-openlookeng-plugin-shim</include>
+            </includes>
+            <binaries>
+                <outputDirectory>lib</outputDirectory>
+                <includeDependencies>true</includeDependencies>
+                <unpack>false</unpack>
+                <directoryMode>755</directoryMode>
+                <fileMode>644</fileMode>
+                <includes>
+                    <include>org.apache.ranger:ranger-plugin-classloader:jar:${ranger.version}</include>
+                    <include>com.google.inject:guice:jar:${openlookeng.guice.version}</include>
+                    <include>com.google.guava:guava:jar:${openlookeng.guava.version}</include>
+                    <include>io.airlift:bootstrap:jar:${openlookeng.airlift.version}</include>
+                    <include>io.airlift:log:jar:${openlookeng.airlift.version}</include>
+                    <include>io.airlift:log-manager:jar:${openlookeng.airlift.version}</include>
+                    <include>io.airlift:configuration:jar:${openlookeng.airlift.version}</include>
+                    <include>javax.validation:validation-api:jar:${openlookeng.validation-api.version}</include>
+                    <include>javax.inject:javax.inject:jar:${javax-inject.version}</include>
+                    <include>org.apache.bval:bval-jsr:jar:${openlookeng.bval-jsr.version}</include>
+                    <include>org.slf4j:slf4j-api:jar:${slf4j-api.version}</include>
+                    <include>javax.annotation:javax.annotation-api:jar:${javax.annotation-api}</include>
+                </includes>
+            </binaries>
+        </moduleSet>
+
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.apache.ranger:ranger-openlookeng-plugin</include>
+            </includes>
+            <binaries>
+                <outputDirectory>lib/ranger-openlookeng-plugin-impl</outputDirectory>
+                <includeDependencies>true</includeDependencies>
+                <unpack>false</unpack>
+                <directoryMode>755</directoryMode>
+                <fileMode>644</fileMode>
+                <includes>
+                    <include>org.apache.ranger:ranger-plugins-audit:jar:${ranger.version}</include>
+                    <include>org.apache.ranger:ranger-plugins-cred:jar:${ranger.version}</include>
+                    <include>org.apache.ranger:ranger-plugins-common:jar:${ranger.version}</include>
+                    <include>org.apache.ranger:credentialbuilder:jar:${ranger.version}</include>
+                    <include>com.google.code.gson:gson*</include>
+                    <include>org.eclipse.persistence:eclipselink</include>
+                    <include>org.eclipse.persistence:javax.persistence</include>
+                    <include>org.apache.httpcomponents:httpmime:jar:${httpcomponents.httpmime.version}</include>
+                    <include>org.apache.httpcomponents:httpclient:jar:${httpcomponents.httpclient.version}</include>
+                    <include>org.apache.httpcomponents:httpcore:jar:${httpcomponents.httpcore.version}</include>
+                    <include>org.noggit:noggit:jar:${noggit.version}</include>
+                    <include>org.apache.solr:solr-solrj</include>
+                    <include>com.sun.jersey:jersey-core</include>
+                    <include>com.sun.jersey:jersey-server</include>
+                    <include>commons-cli:commons-cli</include>
+                    <include>commons-collections:commons-collections</include>
+                    <include>org.apache.commons:commons-configuration2:jar:${commons.configuration.version}</include>
+                    <include>commons-codec:commons-codec</include>
+                    <include>commons-io:commons-io:jar:${commons.io.version}</include>
+                    <include>commons-lang:commons-lang:jar:${commons.lang.version}</include>
+                    <include>commons-logging:commons-logging:jar:${commons.logging.version}</include>
+                    <include>com.google.guava:guava:jar:${google.guava.version}</include>
+                    <include>com.google.protobuf:protobuf-java:jar</include>
+                    <include>com.google.re2j:re2j:jar:${re2j.version}</include>
+                    <include>org.apache.commons:commons-configuration2:jar:${commons.configuration.version}</include>
+                    <include>org.apache.hadoop:hadoop-common:jar:${hadoop.version}</include>
+                    <include>org.apache.hadoop:hadoop-common-plus:jar:${hadoop.version}</include>
+                    <include>org.apache.hadoop:hadoop-auth:jar:${hadoop.version}</include>
+                    <include>org.apache.hadoop:hadoop-hdfs:jar:${hadoop.version}</include>
+                    <include>org.codehaus.woodstox:stax2-api</include>
+                    <include>com.fasterxml.woodstox:woodstox-core</include>
+                    <include>org.apache.htrace:htrace-core4</include>
+                    <include>com.sun.jersey:jersey-bundle</include>
+                    <include>com.sun.jersey:jersey-json</include>
+                    <include>org.codehaus.jackson:jackson-core-asl</include>
+                    <include>org.codehaus.jackson:jackson-jaxrs</include>
+                    <include>org.codehaus.jackson:jackson-mapper-asl</include>
+                    <include>org.codehaus.jackson:jackson-xc</include>
+                    <include>org.apache.zookeeper:zookeeper:jar:${zookeeper.version}</include>
+                    <include>net.java.dev.jna:jna</include>
+                    <include>net.java.dev.jna:jna-platform</include>
+                    <include>com.kstruct:gethostname4j</include>
+                    <include>org.elasticsearch:elasticsearch</include>
+                    <include>org.elasticsearch:elasticsearch-core</include>
+                    <include>org.elasticsearch:elasticsearch-x-content</include>
+                    <include>org.elasticsearch.client:elasticsearch-rest-client</include>
+                    <include>org.elasticsearch.client:elasticsearch-rest-high-level-client</include>
+                    <include>org.elasticsearch.plugin:rank-eval-client</include>
+                    <include>org.elasticsearch.plugin:lang-mustache-client</include>
+                    <include>org.apache.httpcomponents:httpcore-nio:jar:${httpcomponents.httpcore.version}</include>
+                    <include>org.apache.httpcomponents:httpasyncclient:jar:${httpcomponents.httpasyncclient.version}</include>
+                    <include>org.apache.lucene:lucene-core</include>
+                    <include>joda-time:joda-time</include>
+                    <include>com.carrotsearch:hppc</include>
+                </includes>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>install/lib</outputDirectory>
+            <unpack>false</unpack>
+            <directoryMode>755</directoryMode>
+            <fileMode>644</fileMode>
+            <includes>
+                <include>org.apache.ranger:ranger-plugins-installer:jar:${ranger.version}</include>
+                <include>org.apache.ranger:credentialbuilder:jar:${ranger.version}</include>
+                <include>commons-cli:commons-cli</include>
+                <include>commons-collections:commons-collections</include>
+                <include>com.google.guava:guava:jar:${openlookeng.guava.version}</include>
+                <include>org.apache.commons:commons-configuration2:jar:${commons.configuration.version}</include>
+                <include>commons-io:commons-io:jar:${commons.io.version}</include>
+                <include>commons-lang:commons-lang</include>
+                <include>commons-logging:commons-logging:jar:${commons.logging.version}</include>
+                <include>com.google.guava:guava:jar:${google.guava.version}</include>
+                <include>org.slf4j:slf4j-api:jar:${slf4j-api.version}</include>
+                <include>org.apache.hadoop:hadoop-common:jar:${hadoop.version}</include>
+                <include>org.apache.hadoop:hadoop-auth:jar:${hadoop.version}</include>
+                <include>org.codehaus.woodstox:stax2-api</include>
+                <include>com.fasterxml.woodstox:woodstox-core</include>
+                <include>org.apache.htrace:htrace-core4</include>
+            </includes>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <!-- conf.templates for enable -->
+        <fileSet>
+            <outputDirectory>install/conf.templates/enable</outputDirectory>
+            <directory>../plugin-openlookeng/conf</directory>
+            <excludes>
+                <exclude>*.sh</exclude>
+            </excludes>
+            <fileMode>700</fileMode>
+        </fileSet>
+        <fileSet>
+            <outputDirectory>install/conf.templates/disable</outputDirectory>
+            <directory>../plugin-openlookeng/disable-conf</directory>
+            <fileMode>700</fileMode>
+        </fileSet>
+        <fileSet>
+            <outputDirectory>install/conf.templates/default</outputDirectory>
+            <directory>../plugin-openlookeng/template</directory>
+            <fileMode>700</fileMode>
+        </fileSet>
+    </fileSets>
+
+    <!-- enable/disable script for Plugin -->
+    <files>
+        <file>
+            <source>src/main/resources/scripts/enable-agent.sh</source>
+            <outputDirectory></outputDirectory>
+            <destName>enable-openlookeng-plugin.sh</destName>
+            <fileMode>755</fileMode>
+        </file>
+        <file>
+            <source>src/main/resources/scripts/enable-agent.sh</source>
+            <outputDirectory></outputDirectory>
+            <destName>disable-openlookeng-plugin.sh</destName>
+            <fileMode>755</fileMode>
+        </file>
+        <file>
+            <source>${project.parent.basedir}/plugin-openlookeng/scripts/install.properties</source>
+            <outputDirectory></outputDirectory>
+            <destName>install.properties</destName>
+            <fileMode>755</fileMode>
+        </file>
+        <file>
+            <source>src/main/resources/scripts/ranger_credential_helper.py</source>
+            <outputDirectory></outputDirectory>
+            <fileMode>755</fileMode>
+        </file>
+    </files>
+</assembly>
