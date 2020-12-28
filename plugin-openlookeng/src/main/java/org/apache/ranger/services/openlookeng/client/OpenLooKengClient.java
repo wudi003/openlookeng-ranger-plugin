@@ -42,11 +42,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-public class OpenlookengClient extends BaseClient implements Closeable {
+public class OpenLooKengClient
+        extends BaseClient implements Closeable {
   public static final String OPENLOOKENG_USER_NAME_PROP = "user";
   public static final String OPENLOOKENG_PASSWORD_PROP = "password";
 
-  private static final Log LOG = LogFactory.getLog(OpenlookengClient.class);
+  private static final Log LOG = LogFactory.getLog(OpenLooKengClient.class);
 
   private static final String ERR_MSG = "You can still save the repository and start creating "
     + "policies, but you would not be able to use autocomplete for "
@@ -54,12 +55,12 @@ public class OpenlookengClient extends BaseClient implements Closeable {
 
   private Connection con;
 
-  public OpenlookengClient(String serviceName) throws Exception {
+  public OpenLooKengClient(String serviceName) throws Exception {
     super(serviceName, null);
     init();
   }
 
-  public OpenlookengClient(String serviceName, Map<String, String> properties) throws Exception {
+  public OpenLooKengClient(String serviceName, Map<String, String> properties) throws Exception {
     super(serviceName, properties);
     init();
   }
@@ -78,10 +79,10 @@ public class OpenlookengClient extends BaseClient implements Closeable {
     String driverClassName = prop.getProperty("jdbc.driverClassName");
     String url = prop.getProperty("jdbc.url");
 
-    Properties openlookengProperties = new Properties();
-    openlookengProperties.put(OPENLOOKENG_USER_NAME_PROP, prop.getProperty(HadoopConfigHolder.RANGER_LOGIN_USER_NAME_PROP));
+    Properties openLooKengProperties = new Properties();
+    openLooKengProperties.put(OPENLOOKENG_USER_NAME_PROP, prop.getProperty(HadoopConfigHolder.RANGER_LOGIN_USER_NAME_PROP));
     if (prop.getProperty(HadoopConfigHolder.RANGER_LOGIN_PASSWORD) != null) {
-      openlookengProperties.put(OPENLOOKENG_PASSWORD_PROP, prop.getProperty(HadoopConfigHolder.RANGER_LOGIN_PASSWORD));
+      openLooKengProperties.put(OPENLOOKENG_PASSWORD_PROP, prop.getProperty(HadoopConfigHolder.RANGER_LOGIN_PASSWORD));
     }
 
     if (driverClassName != null) {
@@ -90,7 +91,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
         DriverManager.registerDriver(driver);
       } catch (SQLException e) {
         String msgDesc = "initConnection: Caught SQLException while registering"
-          + " the Openlookeng driver.";
+          + " the openLooKeng driver.";
         HadoopException hdpException = new HadoopException(msgDesc, e);
         hdpException.generateResponseDataMap(false, getMessage(e),
           msgDesc + ERR_MSG, null, null);
@@ -117,7 +118,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
           msgDesc + ERR_MSG, null, null);
         throw hdpException;
       } catch (SecurityException se) {
-        String msgDesc = "initConnection: unable to initiate connection to Openlookeng instance,"
+        String msgDesc = "initConnection: unable to initiate connection to openLooKeng instance,"
           + " The caller's class loader is not the same as or an ancestor "
           + "of the class loader for the current class and invocation of "
           + "s.checkPackageAccess() denies access to the package of this class.";
@@ -126,7 +127,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
           msgDesc + ERR_MSG, null, null);
         throw hdpException;
       } catch (Throwable t) {
-        String msgDesc = "initConnection: Unable to connect to Openlookeng instance, "
+        String msgDesc = "initConnection: Unable to connect to openLooKeng instance, "
           + "please provide valid value of field : {jdbc.driverClassName}.";
         HadoopException hdpException = new HadoopException(msgDesc, t);
         hdpException.generateResponseDataMap(false, getMessage(t),
@@ -136,21 +137,21 @@ public class OpenlookengClient extends BaseClient implements Closeable {
     }
 
     try {
-      con = DriverManager.getConnection(url, openlookengProperties);
+      con = DriverManager.getConnection(url, openLooKengProperties);
     } catch (SQLException e) {
-      String msgDesc = "Unable to connect to Openlookeng instance.";
+      String msgDesc = "Unable to connect to openLooKeng instance.";
       HadoopException hdpException = new HadoopException(msgDesc, e);
       hdpException.generateResponseDataMap(false, getMessage(e),
         msgDesc + ERR_MSG, null, null);
       throw hdpException;
     } catch (SecurityException se) {
-      String msgDesc = "Unable to connect to Openlookeng instance.";
+      String msgDesc = "Unable to connect to openLooKeng instance.";
       HadoopException hdpException = new HadoopException(msgDesc, se);
       hdpException.generateResponseDataMap(false, getMessage(se),
         msgDesc + ERR_MSG, null, null);
       throw hdpException;
     } catch (Throwable t) {
-      String msgDesc = "initConnection: Unable to connect to Openlookeng instance, ";
+      String msgDesc = "initConnection: Unable to connect to openLooKeng instance, ";
       HadoopException hdpException = new HadoopException(msgDesc, t);
       hdpException.generateResponseDataMap(false, getMessage(t),
         msgDesc + ERR_MSG, null, null);
@@ -168,7 +169,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
 
       try {
         if (needle != null && !needle.isEmpty() && !needle.equals("*")) {
-          // Cannot use a prepared statement for this as openlooKeng does not support that
+          // Cannot use a prepared statement for this as openLooKeng does not support that
           sql += " LIKE '" + StringEscapeUtils.escapeSql(needle) + "%'";
         }
         stat = con.createStatement();
@@ -212,7 +213,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
         try {
           ret = getCatalogs(ndl, catList);
         } catch (HadoopException he) {
-          LOG.error("<== OpenlookengClient getCatalogList() :Unable to get the Database List", he);
+          LOG.error("<== OpenLooKengClient getCatalogList() :Unable to get the Database List", he);
           throw he;
         }
         return ret;
@@ -263,7 +264,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
         hdpException.generateResponseDataMap(false, getMessage(sqlt),
           msgDesc + ERR_MSG, null, null);
         if (LOG.isDebugEnabled()) {
-          LOG.debug("<== OpenlookengClient.getSchemas() Error : ", sqlt);
+          LOG.debug("<== OpenLooKengClient.getSchemas() Error : ", sqlt);
         }
         throw hdpException;
       } catch (SQLException sqle) {
@@ -273,7 +274,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
         hdpException.generateResponseDataMap(false, getMessage(sqle),
           msgDesc + ERR_MSG, null, null);
         if (LOG.isDebugEnabled()) {
-          LOG.debug("<== OpenlookengClient.getSchemas() Error : ", sqle);
+          LOG.debug("<== OpenLooKengClient.getSchemas() Error : ", sqle);
         }
         throw hdpException;
       }
@@ -294,7 +295,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
         try {
           ret = getSchemas(ndl, cats, shms);
         } catch (HadoopException he) {
-          LOG.error("<== OpenlookengClient getSchemaList() :Unable to get the Schema List", he);
+          LOG.error("<== OpenLooKengClient.getSchemaList() :Unable to get the Schema List", he);
         }
         return ret;
       }
@@ -345,7 +346,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
           hdpException.generateResponseDataMap(false, getMessage(sqlt),
             msgDesc + ERR_MSG, null, null);
           if (LOG.isDebugEnabled()) {
-            LOG.debug("<== OpenlookengClient.getTables() Error : ", sqlt);
+            LOG.debug("<== OpenLooKengClient.getTables() Error : ", sqlt);
           }
           throw hdpException;
         } catch (SQLException sqle) {
@@ -355,7 +356,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
           hdpException.generateResponseDataMap(false, getMessage(sqle),
             msgDesc + ERR_MSG, null, null);
           if (LOG.isDebugEnabled()) {
-            LOG.debug("<== OpenlookengClient.getTables() Error : ", sqle);
+            LOG.debug("<== OpenLooKengClient.getTables() Error : ", sqle);
           }
           throw hdpException;
         }
@@ -377,7 +378,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
         try {
           ret = getTables(ndl, cats, shms, tbls);
         } catch (HadoopException he) {
-          LOG.error("<== OpenlookengClient getTableList() :Unable to get the Column List", he);
+          LOG.error("<== OpenLooKengClient.getTableList() :Unable to get the Column List", he);
           throw he;
         }
         return ret;
@@ -441,7 +442,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
           hdpException.generateResponseDataMap(false, getMessage(sqlt),
             msgDesc + ERR_MSG, null, null);
           if (LOG.isDebugEnabled()) {
-            LOG.debug("<== OpenlookengClient.getColumns() Error : ", sqlt);
+            LOG.debug("<== OpenLooKengClient.getColumns() Error : ", sqlt);
           }
           throw hdpException;
         } catch (SQLException sqle) {
@@ -451,7 +452,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
           hdpException.generateResponseDataMap(false, getMessage(sqle),
             msgDesc + ERR_MSG, null, null);
           if (LOG.isDebugEnabled()) {
-            LOG.debug("<== OpenlookengClient.getColumns() Error : ", sqle);
+            LOG.debug("<== OpenLooKengClient.getColumns() Error : ", sqle);
           }
           throw hdpException;
         }
@@ -474,7 +475,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
         try {
           ret = getColumns(ndl, cats, shms, tbls, cols);
         } catch (HadoopException he) {
-          LOG.error("<== OpenlookengClient getColumnList() :Unable to get the Column List", he);
+          LOG.error("<== OpenLooKengClient.getColumnList() :Unable to get the Column List", he);
           throw he;
         }
         return ret;
@@ -486,7 +487,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
   public static Map<String, Object> connectionTest(String serviceName,
                                                    Map<String, String> connectionProperties)
     throws Exception {
-    OpenlookengClient client = null;
+    OpenLooKengClient client = null;
     Map<String, Object> resp = new HashMap<String, Object>();
 
     boolean status = false;
@@ -494,7 +495,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
     List<String> testResult = null;
 
     try {
-      client = new OpenlookengClient(serviceName, connectionProperties);
+      client = new OpenLooKengClient(serviceName, connectionProperties);
       if (client != null) {
         testResult = client.getCatalogList("*", null);
         if (testResult != null && testResult.size() != 0) {
@@ -532,7 +533,7 @@ public class OpenlookengClient extends BaseClient implements Closeable {
         con.close();
       }
     } catch (SQLException e) {
-      LOG.error("Unable to close Openlookeng SQL connection", e);
+      LOG.error("Unable to close openLooKeng SQL connection", e);
     }
   }
 

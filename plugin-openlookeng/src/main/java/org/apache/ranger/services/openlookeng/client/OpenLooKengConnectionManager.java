@@ -27,49 +27,50 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 
-public class OpenlookengConnectionManager {
-  private static final Logger LOG = Logger.getLogger(OpenlookengConnectionManager.class);
+public class OpenLooKengConnectionManager
+{
+  private static final Logger LOG = Logger.getLogger(OpenLooKengConnectionManager.class);
 
-  protected ConcurrentMap<String, OpenlookengClient> openlookengConnectionCache;
+  protected ConcurrentMap<String, OpenLooKengClient> openLooKengConnectionCache;
   protected ConcurrentMap<String, Boolean> repoConnectStatusMap;
 
-  public OpenlookengConnectionManager() {
-    openlookengConnectionCache = new ConcurrentHashMap<>();
+  public OpenLooKengConnectionManager() {
+    openLooKengConnectionCache = new ConcurrentHashMap<>();
     repoConnectStatusMap = new ConcurrentHashMap<>();
   }
 
-  public OpenlookengClient getOpenlookengConnection(final String serviceName, final String serviceType, final Map<String, String> configs) {
-    OpenlookengClient openlookengClient = null;
+  public OpenLooKengClient getOpenLooKengConnection(final String serviceName, final String serviceType, final Map<String, String> configs) {
+    OpenLooKengClient openLooKengClient = null;
 
     if (serviceType != null) {
-      openlookengClient = openlookengConnectionCache.get(serviceName);
-      if (openlookengClient == null) {
+      openLooKengClient = openLooKengConnectionCache.get(serviceName);
+      if (openLooKengClient == null) {
         if (configs != null) {
-          final Callable<OpenlookengClient> connectOpenlookeng = new Callable<OpenlookengClient>() {
+          final Callable<OpenLooKengClient> connectOpenLooKeng = new Callable<OpenLooKengClient>() {
             @Override
-            public OpenlookengClient call() throws Exception {
-              return new OpenlookengClient(serviceName, configs);
+            public OpenLooKengClient call() throws Exception {
+              return new OpenLooKengClient(serviceName, configs);
             }
           };
           try {
-            openlookengClient = TimedEventUtil.timedTask(connectOpenlookeng, 5, TimeUnit.SECONDS);
+            openLooKengClient = TimedEventUtil.timedTask(connectOpenLooKeng, 5, TimeUnit.SECONDS);
           } catch (Exception e) {
-            LOG.error("Error connecting to Openlookeng repository: " +
+            LOG.error("Error connecting to openLooKeng repository: " +
             serviceName + " using config: " + configs, e);
           }
 
-          OpenlookengClient oldClient = null;
-          if (openlookengClient != null) {
-            oldClient = openlookengConnectionCache.putIfAbsent(serviceName, openlookengClient);
+          OpenLooKengClient oldClient = null;
+          if (openLooKengClient != null) {
+            oldClient = openLooKengConnectionCache.putIfAbsent(serviceName, openLooKengClient);
           } else {
-            oldClient = openlookengConnectionCache.get(serviceName);
+            oldClient = openLooKengConnectionCache.get(serviceName);
           }
 
           if (oldClient != null) {
-            if (openlookengClient != null) {
-              openlookengClient.close();
+            if (openLooKengClient != null) {
+              openLooKengClient.close();
             }
-            openlookengClient = oldClient;
+            openLooKengClient = oldClient;
           }
           repoConnectStatusMap.put(serviceName, true);
         } else {
@@ -78,16 +79,16 @@ public class OpenlookengConnectionManager {
         }
       } else {
         try {
-          openlookengClient.getCatalogList("*", null);
+          openLooKengClient.getCatalogList("*", null);
         } catch (Exception e) {
-          openlookengConnectionCache.remove(serviceName);
-          openlookengClient.close();
-          openlookengClient = getOpenlookengConnection(serviceName, serviceType, configs);
+          openLooKengConnectionCache.remove(serviceName);
+          openLooKengClient.close();
+          openLooKengClient = getOpenLooKengConnection(serviceName, serviceType, configs);
         }
       }
     } else {
       LOG.error("Asset not found with name " + serviceName, new Throwable());
     }
-    return openlookengClient;
+    return openLooKengClient;
   }
 }

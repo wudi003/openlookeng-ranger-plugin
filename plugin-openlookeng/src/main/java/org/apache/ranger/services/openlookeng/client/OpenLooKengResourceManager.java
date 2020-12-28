@@ -28,8 +28,9 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
-public class OpenlookengResourceManager {
-  private static final Log LOG = LogFactory.getLog(OpenlookengResourceManager.class);
+public class OpenLooKengResourceManager
+{
+  private static final Log LOG = LogFactory.getLog(OpenLooKengResourceManager.class);
 
   private static final String  CATALOG 	  = "catalog";
   private static final String  SCHEMA     = "schema";
@@ -41,24 +42,24 @@ public class OpenlookengResourceManager {
     Map<String, Object> ret = null;
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("==> OpenlookengResourceMgr.connectionTest ServiceName: " + serviceName + "Configs" + configs);
+      LOG.debug("==> OpenLooKengResourceManager.connectionTest ServiceName: " + serviceName + "Configs" + configs);
     }
 
     try {
-      ret = OpenlookengClient.connectionTest(serviceName, configs);
+      ret = OpenLooKengClient.connectionTest(serviceName, configs);
     } catch (Exception e) {
-      LOG.error("<== OpenlookengResourceManager.connectionTest Error: " + e);
+      LOG.error("<== OpenLooKengResourceManager.connectionTest Error: " + e);
       throw e;
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("<== OpenlookengResourceManager.connectionTest Result : " + ret);
+      LOG.debug("<== OpenLooKengResourceManager.connectionTest Result : " + ret);
     }
 
     return ret;
   }
 
-  public static List<String> getOpenlookengResources(String serviceName, String serviceType, Map<String, String> configs, ResourceLookupContext context) throws Exception {
+  public static List<String> getOpenLooKengResources(String serviceName, String serviceType, Map<String, String> configs, ResourceLookupContext context) throws Exception {
 
     String userInput = context.getUserInput();
     String resource = context.getResourceName();
@@ -75,7 +76,7 @@ public class OpenlookengResourceManager {
 
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("<== OpenlookengResourceMgr.getOpenlookengResources()  UserInput: \"" + userInput + "\" resource : " + resource + " resourceMap: " + resourceMap);
+      LOG.debug("<== OpenLooKengResourceManager.getOpenLooKengResources()  UserInput: \"" + userInput + "\" resource : " + resource + " resourceMap: " + resourceMap);
     }
 
     if (userInput != null && resource != null) {
@@ -106,11 +107,11 @@ public class OpenlookengResourceManager {
       try {
 
         if (LOG.isDebugEnabled()) {
-          LOG.debug("==> OpenlookengResourceMgr.getOpenlookengResources() UserInput: " + userInput + " configs: " + configs + " catalogList: " + catalogList + " tableList: "
+          LOG.debug("==> OpenLooKengResourceManager.getOpenLooKengResources() UserInput: " + userInput + " configs: " + configs + " catalogList: " + catalogList + " tableList: "
             + tableList + " columnList: " + columnList);
         }
 
-        final OpenlookengClient openlookengClient = new OpenlookengConnectionManager().getOpenlookengConnection(serviceName, serviceType, configs);
+        final OpenLooKengClient openLooKengClient = new OpenLooKengConnectionManager().getOpenLooKengConnection(serviceName, serviceType, configs);
 
         Callable<List<String>> callableObj = null;
 
@@ -124,13 +125,13 @@ public class OpenlookengResourceManager {
         final List<String> finalTableList = tableList;
         final List<String> finalColumnList = columnList;
 
-        if (openlookengClient != null) {
+        if (openLooKengClient != null) {
           if (catalogName != null && !catalogName.isEmpty()) {
             finalCatalogName = catalogName;
             callableObj = new Callable<List<String>>() {
               @Override
               public List<String> call() throws Exception {
-                return openlookengClient.getCatalogList(finalCatalogName, finalCatalogList);
+                return openLooKengClient.getCatalogList(finalCatalogName, finalCatalogList);
               }
             };
           } else if (schemaName != null && !schemaName.isEmpty()) {
@@ -138,7 +139,7 @@ public class OpenlookengResourceManager {
             callableObj = new Callable<List<String>>() {
               @Override
               public List<String> call() throws Exception {
-                return openlookengClient.getSchemaList(finalSchemaName, finalCatalogList, finalSchemaList);
+                return openLooKengClient.getSchemaList(finalSchemaName, finalCatalogList, finalSchemaList);
               }
             };
           } else if (tableName != null && !tableName.isEmpty()) {
@@ -146,7 +147,7 @@ public class OpenlookengResourceManager {
             callableObj = new Callable<List<String>>() {
               @Override
               public List<String> call() throws Exception {
-                return openlookengClient.getTableList(finalTableName, finalCatalogList, finalSchemaList, finalTableList);
+                return openLooKengClient.getTableList(finalTableName, finalCatalogList, finalSchemaList, finalTableList);
               }
             };
           } else if (columnName != null && !columnName.isEmpty()) {
@@ -156,20 +157,20 @@ public class OpenlookengResourceManager {
             callableObj = new Callable<List<String>>() {
               @Override
               public List<String> call() throws Exception {
-                return openlookengClient.getColumnList(finalColumnName, finalCatalogList, finalSchemaList, finalTableList, finalColumnList);
+                return openLooKengClient.getColumnList(finalColumnName, finalCatalogList, finalSchemaList, finalTableList, finalColumnList);
               }
             };
           }
           if (callableObj != null) {
-            synchronized (openlookengClient) {
+            synchronized (openLooKengClient) {
               resultList = TimedEventUtil.timedTask(callableObj, 5, TimeUnit.SECONDS);
             }
           } else {
-            LOG.error("Could not initiate a OpenlookengClient timedTask");
+            LOG.error("Could not initiate a openLooKengClient timedTask");
           }
         }
       } catch (Exception e) {
-        LOG.error("Unable to get Openlookeng resource", e);
+        LOG.error("Unable to get openLooKeng resource", e);
         throw e;
       }
     }
