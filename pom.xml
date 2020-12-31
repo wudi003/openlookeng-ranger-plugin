@@ -99,7 +99,7 @@
         <lucene.version>8.4.0</lucene.version>
         <maven.pmd.plugin.version>3.7</maven.pmd.plugin.version>
         <noggit.version>0.8</noggit.version>
-        <openlookeng.version>1.0.1</openlookeng.version>
+        <openlookeng.version>1.1.0</openlookeng.version>
         <openlookeng.airlift.version>0.193</openlookeng.airlift.version>
         <openlookeng.bval-jsr.version>2.0.0</openlookeng.bval-jsr.version>
         <openlookeng.guice.version>4.2.2</openlookeng.guice.version>
